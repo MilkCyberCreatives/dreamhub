@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -18,10 +18,20 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-}
+} */
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Adjusted section spacing */
+  .section-spacing {
+    @apply pt-12 pb-12 md:pt-16 md:pb-16;
+  }
+
+  /* Optional: even tighter version if needed */
+  .section-tight {
+    @apply pt-6 pb-6 md:pt-8 md:pb-8;
   }
 }
