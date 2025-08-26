@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaClock, FaUsers, FaArrowRight, FaCalendarAlt } from 'react-icons/fa';
+import { FaClock, FaUsers, FaArrowRight } from 'react-icons/fa';
 
 export default function CampSection() {
   const camps = [
@@ -11,26 +11,37 @@ export default function CampSection() {
       title: '5-Day Disciplinary Camp',
       duration: '5 Days',
       participants: '25 Participants',
-      description: 'A structured program focused on building discipline, responsibility, and character during school holidays.',
+      description:
+        'A structured program focused on building discipline, responsibility, and character during school holidays.',
       image: '/images/camps/disciplinary.jpg',
-      link: '/book/disciplinary-camp',
-      features: ['Structured daily routine', 'Character development', 'Team building', 'Personal mentorship']
+      slug: 'disciplinary-camp',
+      features: [
+        'Structured daily routine',
+        'Character development',
+        'Team building',
+        'Personal mentorship',
+      ],
     },
     {
       title: '10-Day Empowerment Camp',
       duration: '10 Days',
       participants: '25 Participants',
-      description: 'An extended program designed to develop leadership skills and personal growth through experiential learning.',
+      description:
+        'An extended program designed to develop leadership skills and personal growth through experiential learning.',
       image: '/images/camps/empowerment.jpg',
-      link: '/book/empowerment-camp',
-      features: ['Leadership training', 'Confidence building', 'Goal setting', 'Life skills development']
+      slug: 'empowerment-camp',
+      features: [
+        'Leadership training',
+        'Confidence building',
+        'Goal setting',
+        'Life skills development',
+      ],
     },
   ];
 
   return (
     <section className="bg-white py-20 px-6 md:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
-
         {/* Section Header */}
         <div className="text-center mb-16">
           <motion.h2
@@ -102,8 +113,8 @@ export default function CampSection() {
                   </ul>
                 </div>
 
-                {/* Book Now Button */}
-                <Link href={camp.link}>
+                {/* Register Now Button */}
+                <Link href={`/booking/${camp.slug}`}>
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -117,39 +128,6 @@ export default function CampSection() {
             </motion.div>
           ))}
         </div>
-
-        {/* Additional Information */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center mt-16 bg-gray-50 rounded-xl p-8 border border-gray-200"
-        >
-          <h3 className="text-2xl font-semibold text-gray-900 mb-4">Need More Information?</h3>
-          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            Contact our team to learn more about our programs or to schedule a consultation.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-6 py-3 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
-              >
-                Contact Us
-              </motion.button>
-            </Link>
-            <a href="tel:0128833536">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-6 py-3 border border-gray-300 text-gray-900 rounded-lg font-medium hover:bg-gray-100 transition-colors"
-              >
-                Call 012 883 3536
-              </motion.button>
-            </a>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
