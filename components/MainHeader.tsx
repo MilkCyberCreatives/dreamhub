@@ -9,7 +9,7 @@ import {
   FaTiktok,
   FaXTwitter,
   FaBars,
-  FaTimes,
+  FaXmark,
   FaPhone,
   FaEnvelope
 } from 'react-icons/fa6';
@@ -97,7 +97,7 @@ export default function MainHeader() {
             className="lg:hidden p-2 rounded-md text-gray-700 hover:text-black hover:bg-gray-100 focus:outline-none z-50"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            {isMenuOpen ? <FaXmark size={24} /> : <FaBars size={24} />}
           </button>
         </div>
 
