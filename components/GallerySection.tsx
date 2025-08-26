@@ -50,11 +50,10 @@ export default function GallerySection() {
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ scale: 1.03 }}
+              whileHover={{ scale: 1.03 }} // ✅ Fixed
               transition={{
                 duration: 0.5,
                 delay: index * 0.1,
-                whileHover: { duration: 0.3 },
               }}
               className={`relative overflow-hidden rounded-xl group cursor-pointer
                 ${index === 0 ? 'md:col-span-2 md:row-span-2' : ''}
