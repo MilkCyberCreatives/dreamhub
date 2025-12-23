@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sanity/client": "^7.13.2",
     "axios": "^1.11.0",
     "file-saver": "^2.0.5",
     "framer-motion": "^12.23.12",
+    "groq": "^5.1.0",
     "jspdf": "^3.0.1",
     "jspdf-autotable": "^5.0.2",
     "mongoose": "^8.18.0",

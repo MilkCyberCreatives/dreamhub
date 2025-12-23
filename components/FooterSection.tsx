@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -12,8 +10,13 @@ import {
 } from 'react-icons/fa';
 
 export default function FooterSection() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="relative bg-black text-white px-6 md:px-12 pt-16 pb-10">
+    <footer
+      className="relative bg-black text-white px-6 md:px-12 pt-16 pb-10"
+      aria-label="Dreamhub footer"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Top Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
@@ -23,11 +26,13 @@ export default function FooterSection() {
               <div className="relative w-40 h-12 mb-4">
                 <Image
                   src="/dreamhub-logo.svg"
-                  alt="Dreamhub Logo"
+                  alt="Dreamhub"
                   fill
+                  sizes="160px"
                   className="object-contain filter brightness-0 invert"
                 />
               </div>
+
               <p className="text-gray-400 text-sm leading-relaxed">
                 Transforming teens through discipline, leadership, and confidence-building programs.
               </p>
@@ -35,18 +40,31 @@ export default function FooterSection() {
 
             <div className="space-y-3">
               <div className="flex items-start">
-                <FaPhone className="text-white mt-1 mr-3 text-sm" />
-                <span className="text-gray-400 text-sm">012 883 3536</span>
+                <FaPhone className="text-white mt-1 mr-3 text-sm" aria-hidden="true" />
+                <a
+                  href="tel:0128833536"
+                  className="text-gray-400 text-sm hover:text-white transition"
+                  aria-label="Call Dreamhub on 012 883 3536"
+                >
+                  012 883 3536
+                </a>
               </div>
+
               <div className="flex items-start">
-                <FaEnvelope className="text-white mt-1 mr-3 text-sm" />
-                <span className="text-gray-400 text-sm">info@dreamhub.com</span>
+                <FaEnvelope className="text-white mt-1 mr-3 text-sm" aria-hidden="true" />
+                <a
+                  href="mailto:info@dreamhub.co.za"
+                  className="text-gray-400 text-sm hover:text-white transition"
+                  aria-label="Email Dreamhub at info@dreamhub.co.za"
+                >
+                  info@dreamhub.co.za
+                </a>
               </div>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
+          <nav aria-label="Quick links">
             <h3 className="text-lg font-semibold mb-6 text-white">Quick Links</h3>
             <ul className="space-y-3">
               <li>
@@ -70,10 +88,10 @@ export default function FooterSection() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* More Info Links */}
-          <div>
+          <nav aria-label="More information">
             <h3 className="text-lg font-semibold mb-6 text-white">More Info</h3>
             <ul className="space-y-3">
               <li>
@@ -88,7 +106,7 @@ export default function FooterSection() {
               </li>
               <li>
                 <Link href="/terms" className="text-gray-400 hover:text-white transition text-sm">
-                  Terms & Conditions
+                  Terms &amp; Conditions
                 </Link>
               </li>
               <li>
@@ -97,7 +115,7 @@ export default function FooterSection() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Newsletter + Social */}
           <div>
@@ -105,40 +123,59 @@ export default function FooterSection() {
             <p className="text-gray-400 text-sm mb-4">
               Subscribe to our newsletter for camp updates and parenting tips.
             </p>
-            <div className="flex mb-6">
+
+            {/* NOTE: This is UI-only for now (no backend submission yet) */}
+            <form className="flex mb-6" aria-label="Newsletter subscription form">
+              <label htmlFor="newsletter-email" className="sr-only">
+                Email address
+              </label>
               <input
+                id="newsletter-email"
                 type="email"
                 placeholder="Your email address"
+                autoComplete="email"
                 className="bg-gray-800 text-white px-4 py-3 text-sm rounded-l-lg w-full focus:outline-none focus:ring-2 focus:ring-white"
               />
-              <button className="bg-white text-black px-4 py-3 rounded-r-lg hover:bg-gray-200 transition">
-                <FaPaperPlane />
+              <button
+                type="button"
+                className="bg-white text-black px-4 py-3 rounded-r-lg hover:bg-gray-200 transition"
+                aria-label="Subscribe to newsletter"
+              >
+                <FaPaperPlane aria-hidden="true" />
               </button>
-            </div>
+            </form>
 
             <h3 className="text-lg font-semibold mb-4 text-white">Follow Us</h3>
             <div className="flex gap-3">
-              <Link
+              <a
                 href="https://facebook.com"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-800 hover:bg-gray-700 p-3 rounded-full transition"
+                aria-label="Dreamhub on Facebook"
               >
-                <FaFacebookF className="text-white text-lg" />
-              </Link>
-              <Link
+                <FaFacebookF className="text-white text-lg" aria-hidden="true" />
+              </a>
+
+              <a
                 href="https://instagram.com"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-800 hover:bg-gray-700 p-3 rounded-full transition"
+                aria-label="Dreamhub on Instagram"
               >
-                <FaInstagram className="text-white text-lg" />
-              </Link>
-              <Link
+                <FaInstagram className="text-white text-lg" aria-hidden="true" />
+              </a>
+
+              <a
                 href="https://youtube.com"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-800 hover:bg-gray-700 p-3 rounded-full transition"
+                aria-label="Dreamhub on YouTube"
               >
-                <FaYoutube className="text-white text-lg" />
-              </Link>
+                <FaYoutube className="text-white text-lg" aria-hidden="true" />
+              </a>
             </div>
           </div>
         </div>
@@ -146,8 +183,9 @@ export default function FooterSection() {
         {/* Bottom Footer Bar */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} Dreamhub. All rights reserved.
+            © {year} Dreamhub. All rights reserved.
           </p>
+
           <p className="text-gray-500 text-sm">
             Designed by{' '}
             <a

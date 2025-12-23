@@ -1,0 +1,116 @@
+export const homepage = {
+  name: 'homepage',
+  title: 'Homepage',
+  type: 'document',
+  fields: [
+    {
+      name: 'seoTitle',
+      title: 'SEO Title',
+      type: 'string',
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'seoDescription',
+      title: 'SEO Description',
+      type: 'text',
+      rows: 3,
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'heroTitle',
+      title: 'Hero Title',
+      type: 'string',
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'heroSubtitle',
+      title: 'Hero Subtitle',
+      type: 'text',
+      rows: 3,
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'heroPrimaryCtaText',
+      title: 'Hero Primary CTA Text',
+      type: 'string',
+      initialValue: 'View Our Camps',
+    },
+    {
+      name: 'heroPrimaryCtaLink',
+      title: 'Hero Primary CTA Link',
+      type: 'string',
+      initialValue: '/camps',
+    },
+    {
+      name: 'heroSecondaryCtaText',
+      title: 'Hero Secondary CTA Text',
+      type: 'string',
+      initialValue: 'Learn More',
+    },
+    {
+      name: 'heroSecondaryCtaLink',
+      title: 'Hero Secondary CTA Link',
+      type: 'string',
+      initialValue: '/about',
+    },
+    {
+      name: 'backgroundVideoYouTubeId',
+      title: 'Background Video YouTube ID',
+      type: 'string',
+      description: 'Example: J9YriLGuOVM',
+      initialValue: 'J9YriLGuOVM',
+    },
+    {
+      name: 'camps',
+      title: 'Camps',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'title', title: 'Title', type: 'string', validation: (Rule: any) => Rule.required() },
+            { name: 'slug', title: 'Slug', type: 'string', validation: (Rule: any) => Rule.required() },
+            { name: 'price', title: 'Price (ZAR)', type: 'number', validation: (Rule: any) => Rule.required() },
+            { name: 'duration', title: 'Duration', type: 'string' },
+            { name: 'participants', title: 'Participants', type: 'string' },
+            { name: 'description', title: 'Description', type: 'text', rows: 3 },
+            { name: 'image', title: 'Image', type: 'image', options: { hotspot: true } },
+            { name: 'features', title: 'Features', type: 'array', of: [{ type: 'string' }] },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'galleryImages',
+      title: 'Gallery Images',
+      type: 'array',
+      of: [{ type: 'image', options: { hotspot: true } }],
+    },
+    {
+      name: 'ctaTitle',
+      title: 'CTA Title',
+      type: 'string',
+      initialValue: 'Ready to Transform Your Teen?',
+    },
+    {
+      name: 'ctaText',
+      title: 'CTA Text',
+      type: 'text',
+      rows: 3,
+      initialValue:
+        'Give them the gift of discipline, leadership, and confidence at our next Dreamhub camp. Limited spots available.',
+    },
+    {
+      name: 'ctaButtonText',
+      title: 'CTA Button Text',
+      type: 'string',
+      initialValue: 'Book A Camp Now',
+    },
+    {
+      name: 'ctaButtonLink',
+      title: 'CTA Button Link',
+      type: 'string',
+      initialValue: '/booking',
+    },
+  ],
+};

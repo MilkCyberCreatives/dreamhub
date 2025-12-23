@@ -1,131 +1,133 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
-import { FaClock, FaUsers, FaArrowRight } from 'react-icons/fa';
+import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { FaMapMarkerAlt, FaArrowRight } from "react-icons/fa";
 
 export default function CampSection() {
+  const reduceMotion = useReducedMotion();
+
   const camps = [
     {
-      title: '5-Day Disciplinary Camp',
-      duration: '5 Days',
-      participants: '25 Participants',
-      description:
-        'A structured program focused on building discipline, responsibility, and character during school holidays.',
-      image: '/images/camps/disciplinary.jpg',
-      slug: 'disciplinary-camp',
-      features: [
-        'Structured daily routine',
-        'Character development',
-        'Team building',
-        'Personal mentorship',
-      ],
+      tag: "Featured",
+      category: "Discipline Camp",
+      price: "R2500,00",
+      location: "Pretoria, South Africa",
+      title: "January Back To School 5-Day Camp",
+      image: "/images/camps/disciplinary.jpg",
+      slug: "disciplinary-camp",
     },
     {
-      title: '10-Day Empowerment Camp',
-      duration: '10 Days',
-      participants: '25 Participants',
-      description:
-        'An extended program designed to develop leadership skills and personal growth through experiential learning.',
-      image: '/images/camps/empowerment.jpg',
-      slug: 'empowerment-camp',
-      features: [
-        'Leadership training',
-        'Confidence building',
-        'Goal setting',
-        'Life skills development',
-      ],
+      tag: "Featured",
+      category: "Discipline Camp",
+      price: "R5000,00",
+      location: "Pretoria, South Africa",
+      title: "January Back To School 10-Day Camp",
+      image: "/images/camps/empowerment.jpg",
+      slug: "empowerment-camp",
     },
   ];
 
   return (
-    <section className="bg-white py-20 px-6 md:px-12 lg:px-20">
+    <section className="bg-white py-20 px-6 md:px-12 lg:px-20" aria-label="Discipline Camps">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
+        {/* Section Header (matches attachment vibe) */}
+        <div className="text-center mb-12">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold mb-4 text-gray-900"
+            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold text-gray-900"
           >
-            School <span className="text-[#F7CF3C]">Holiday Programs</span>
+            Discipline Camps
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg text-gray-600 max-w-2xl mx-auto"
-          >
-            Professional development camps designed to build character and leadership skills during school breaks.
-          </motion.p>
+
+          <div className="flex justify-center mt-4">
+            <span className="h-[3px] w-14 bg-gray-900/90 rounded-full" />
+          </div>
         </div>
 
-        {/* Camp Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {camps.map((camp, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.2 }}
-              className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-all duration-300 group"
+            <motion.article
+              key={camp.slug}
+              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: idx * 0.12 }}
+              viewport={{ once: true }}
+              className="
+                group rounded-2xl border border-gray-200
+                overflow-hidden bg-white shadow-sm
+                hover:shadow-xl hover:-translate-y-1
+                transition-all duration-300
+              "
             >
-              {/* Camp Image */}
-              <div className="relative h-60 w-full overflow-hidden">
+              {/* Image Top */}
+              <div className="relative w-full h-[320px]">
                 <Image
                   src={camp.image}
                   alt={camp.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  priority={idx === 0}
+                  sizes="(max-width: 768px) 92vw, (max-width: 1200px) 45vw, 560px"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-              </div>
 
-              {/* Camp Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{camp.title}</h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">{camp.description}</p>
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
 
-                {/* Program Details */}
-                <div className="flex gap-6 text-gray-700 text-sm mb-5">
-                  <div className="flex items-center gap-2">
-                    <FaClock className="text-[#F7CF3C] text-sm" />
-                    <span>{camp.duration}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <FaUsers className="text-[#F7CF3C] text-sm" />
-                    <span>{camp.participants}</span>
-                  </div>
+                {/* Featured badge */}
+                <div className="absolute top-5 left-5">
+                  <span className="inline-flex items-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-md">
+                    {camp.tag}
+                  </span>
                 </div>
 
-                {/* Program Features */}
-                <div className="mb-6">
-                  <h4 className="text-sm font-medium text-gray-900 mb-3">Program Includes:</h4>
-                  <ul className="space-y-2">
-                    {camp.features.map((feature, index) => (
-                      <li key={index} className="flex items-start">
-                        <div className="w-1.5 h-1.5 bg-[#F7CF3C] rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                        <span className="text-sm text-gray-600">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                {/* Text on image (bottom-left) */}
+                <div className="absolute bottom-5 left-5 right-5">
+                  <p className="text-white/90 text-sm font-semibold drop-shadow">
+                    {camp.category}
+                  </p>
+                  <p className="text-white text-2xl font-extrabold drop-shadow">
+                    {camp.price}
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom info panel */}
+              <div className="p-6 md:p-7">
+                <div className="flex items-center gap-2 text-gray-600 mb-3">
+                  <FaMapMarkerAlt className="text-gray-500" />
+                  <span className="text-sm">{camp.location}</span>
                 </div>
 
-                {/* Register Now Button */}
-                <Link href={`/booking/${camp.slug}`}>
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full bg-[#F7CF3C] text-gray-900 py-3 rounded-lg font-medium flex items-center justify-center space-x-2 hover:bg-[#f8d84e] transition-colors duration-200"
-                  >
-                    <span>Register Now</span>
-                    <FaArrowRight className="text-xs" />
-                  </motion.button>
-                </Link>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 leading-snug">
+                  {camp.title}
+                </h3>
+
+                {/* CTA */}
+                <div className="mt-6">
+                  <Link href={`/booking/${camp.slug}`} aria-label={`Register for ${camp.title}`}>
+                    <motion.button
+                      whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+                      whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+                      className="
+                        w-full inline-flex items-center justify-center gap-2
+                        rounded-xl bg-gray-900 text-white
+                        py-3.5 font-semibold
+                        hover:bg-black transition
+                      "
+                    >
+                      Register Now
+                      <FaArrowRight className="text-sm" />
+                    </motion.button>
+                  </Link>
+                </div>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>
